@@ -1,0 +1,7 @@
+### Example POST request
+POST http://localhost:9900/2015-03-31/functions/function/invocations
+Content-Type: application/json
+
+{
+  "key": "value"
+}

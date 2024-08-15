@@ -1,0 +1,51 @@
+= My Lambda Project
+
+== 概要
+このプロジェクトは、Dockerを使用してAWS Lambda関数の開発環境をセットアップする方法を示しています。関数はPythonで記述されており、DockerとHTTPクライアントを使用してローカルでテストできます。
+
+== 前提条件
+- Docker
+- IntelliJ IDEA
+
+== セットアップ
+=== ステップ 1: app.pyを作成する
+```python
+def lambda_handler(event, context):
+    return {
+        'statusCode': 200,
+        'body': 'Hello from Lambda!'
+    }
+```
+=== ステップ 2: requirements.txtに依存関係を追加する
+```text
+# Add any dependencies here
+```
+
+== ビルドと実行
+=== Dockerイメージをビルドする
+```bash
+docker-compose build
+```
+=== Dockerコンテナを実行する
+```bash
+docker-compose up
+```
+
+== Lambda関数のテスト
+=== HTTPクライアントを使用して関数をテストする
+rest.httpファイルを開きPOSTを実行します。
+
+== AWS lambdaへのデプロイ
+=== AWS CLIを使用してコンテナイメージをECRにプッシュする
+```bash
+aws ecr get-login-password --region {us-east-1} | docker login --username AWS --password-stdin {123456789012}.dkr.ecr.us-east-1.amazonaws.com
+docker tag my-lambda:latest {123456789012}.dkr.ecr.us-east-1.amazonaws.com/my-lambda:latest
+docker push {123456789012}.dkr.ecr.us-east-1.amazonaws.com/my-lambda:latest
+```
+=== AWS Lambdaに関数をデプロイする
+```bash
+aws lambda create-function --function-name my-lambda --code ImageUri={123456789012}.dkr.ecr.{us-east-1}.amazonaws.com/my-lambda:latest --role arn:aws:iam::{123456789012}:role/lambda-role --handler app.lambda_handler --runtime python3.8
+```
+
+
+

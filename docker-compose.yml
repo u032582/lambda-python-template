@@ -1,0 +1,7 @@
+version: '3.8'
+
+services:
+  lambda:
+    build: .
+    ports:
+      - "9900:8080"
