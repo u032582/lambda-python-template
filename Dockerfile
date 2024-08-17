@@ -10,3 +10,5 @@ RUN pip install -r requirements.txt
 
 # Set the CMD to your handler (app.lambda_handler)
 CMD ["app.lambda_handler"]
+
+####
