@@ -1,6 +1,5 @@
 = My Lambda Project
 
-
 == 概要
 このプロジェクトは、Dockerを使用してAWS Lambda関数の開発環境をセットアップする方法を示しています。関数はPythonで記述されており、DockerとHTTPクライアントを使用してローカルでテストできます。
 
